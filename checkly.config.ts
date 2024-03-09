@@ -4,7 +4,7 @@ import { EmailAlertChannel, Frequency } from 'checkly/constructs';
 
 const emailChannel = new EmailAlertChannel('email-channel-1', {
   // FIXME: add your own email address, Checkly will send you an email notification if a check fails
-  address: 'contact@creativedesignsguru.com',
+  address: 'patrickmurphydev@gmail.com',
   sendDegraded: true,
 });
 
@@ -20,7 +20,7 @@ export const config = defineConfig({
       {
         key: 'PRODUCTION_URL',
         // FIXME: Add your own production URL
-        value: 'https://google.com',
+        value: 'https://ellensburgcrime.com',
       },
     ],
     browserChecks: {
