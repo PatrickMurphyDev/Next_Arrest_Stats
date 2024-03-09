@@ -1,7 +1,15 @@
-import Image from 'next/image';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/no-array-index-key */
 import { getTranslations } from 'next-intl/server';
 
-import { Sponsors } from '@/components/Sponsors';
+import ChartLine from '@/components/ChartLine';
+import { DashboardHeadingCustom } from '@/components/DashboardHeadingCustom';
+import DashboardTableCard from '@/components/DashboardTableCard';
+import { VWDWReportingViewColumns } from '@/models/vw_dw_reportingview';
+import { VWDWReportingViewOffensesColumns } from '@/models/vw_dw_reportingview_offenses';
+import vw_dw_reportingview from '@/public/assets/data/vw_dw_reportingview.json';
+import vw_dw_reportingview_offenses from '@/public/assets/data/vw_dw_reportingview_offenses.json';
+import { EDataSortMethod } from '@/types/EDataSortMethod.enum';
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
@@ -17,207 +25,132 @@ export async function generateMetadata(props: { params: { locale: string } }) {
 
 export default function Index() {
   return (
-    <>
-      <Image
-        src="/assets/images/nextjs-starter-banner.png"
-        alt="Nextjs starter banner"
-        width={600}
-        height={315}
-        unoptimized
-      />
-      GitHub repository:{' '}
-      <a href="https://github.com/ixartz/Next-js-Boilerplate">
-        NextJS Boilerplate
-      </a>
-      <h2 className="mt-5 text-2xl font-bold">Sponsors</h2>
-      <Sponsors />
-      <h2 className="mt-5 text-2xl font-bold">
-        Boilerplate code for your Nextjs project with Tailwind CSS
-      </h2>
-      <p>
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>{' '}
-        Next.js Boilerplate is a starter code for your Next js project by
-        putting developer experience first .{' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>{' '}
-        Made with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged,
-        VSCode, Netlify, PostCSS, Tailwind CSS, Authentication with Clerk,
-        Database with DrizzleORM (SQLite, PostgreSQL, and MySQL) and Turso.
-      </p>
-      <h3 className="text-lg font-semibold">Next js Boilerplate Features</h3>
-      <p>Developer experience first:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="fire">
-            🔥
-          </span>{' '}
-          <a href="https://nextjs.org" rel="nofollow">
-            Next.js
-          </a>{' '}
-          for Static Site Generator
-        </li>
-        <li>
-          <span role="img" aria-label="art">
-            🎨
-          </span>{' '}
-          Integrate with{' '}
-          <a href="https://tailwindcss.com" rel="nofollow">
-            Tailwind CSS
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="nail_care">
-            💅
-          </span>{' '}
-          PostCSS for processing Tailwind CSS
-        </li>
-        <li>
-          <span role="img" aria-label="tada">
-            🎉
-          </span>{' '}
-          Type checking Typescript
-        </li>
-        <li>
-          <span role="img" aria-label="pencil2">
-            ✏️
-          </span>{' '}
-          Linter with{' '}
-          <a href="https://eslint.org" rel="nofollow">
-            ESLint
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="hammer_and_wrench">
-            🛠
-          </span>{' '}
-          Code Formatter with{' '}
-          <a href="https://prettier.io" rel="nofollow">
-            Prettier
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fox_face">
-            🦊
-          </span>{' '}
-          Husky for Git Hooks
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🚫
-          </span>{' '}
-          Lint-staged for running linters on Git staged files
-        </li>
-        <li>
-          <span role="img" aria-label="lock">
-            🔒
-          </span>{' '}
-          Authentication with{' '}
-          <a href="https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate">
-            Clerk
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="package">
-            📦
-          </span>{' '}
-          Type-safe ORM with DrizzleORM, compatible with SQLite, PostgreSQL, and
-          MySQL
-        </li>
-        <li>
-          <span role="img" aria-label="computer_disk">
-            💽
-          </span>{' '}
-          Global Database with{' '}
-          <a href="https://turso.tech/?utm_source=nextjsstarterbp">Turso</a>
-        </li>
-        <li>
-          <span role="img" aria-label="gyrophare">
-            🚨
-          </span>{' '}
-          Monitoring with{' '}
-          <a href="https://www.checklyhq.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate">
-            Checkly
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🗂
-          </span>{' '}
-          VSCode configuration: Debug, Settings, Tasks and extension for
-          PostCSS, ESLint, Prettier, TypeScript
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            🤖
-          </span>{' '}
-          SEO metadata, JSON-LD and Open Graph tags with Next SEO
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            ⚙️
-          </span>{' '}
-          <a
-            href="https://www.npmjs.com/package/@next/bundle-analyzer"
-            rel="nofollow"
-          >
-            Bundler Analyzer
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="rainbow">
-            🌈
-          </span>{' '}
-          Include a FREE minimalist theme
-        </li>
-        <li>
-          <span role="img" aria-label="hundred">
-            💯
-          </span>{' '}
-          Maximize lighthouse score
-        </li>
-      </ul>
-      <p>Built-in feature from Next.js:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="coffee">
-            ☕
-          </span>{' '}
-          Minify HTML &amp; CSS
-        </li>
-        <li>
-          <span role="img" aria-label="dash">
-            💨
-          </span>{' '}
-          Live reload
-        </li>
-        <li>
-          <span role="img" aria-label="white_check_mark">
-            ✅
-          </span>{' '}
-          Cache busting
-        </li>
-      </ul>
-      <h3 className="text-lg font-semibold">Our Starter code Philosophy</h3>
-      <ul>
-        <li>Minimal code</li>
-        <li>SEO-friendly</li>
-        <li>
-          <span role="img" aria-label="rocket">
-            🚀
-          </span>{' '}
-          Production-ready
-        </li>
-      </ul>
-      <p>
-        Check our GitHub project for more information about{' '}
-        <a href="https://github.com/ixartz/Next-js-Boilerplate">
-          Nextjs Boilerplate
-        </a>
-        .
-      </p>
-    </>
+    <div>
+      <h1 className="text-2xl">Dataset Summary</h1>
+      <div className="flex flex-row">
+        <div className="grow">
+          <DashboardTableCard
+            title="By Gender"
+            dataFull={vw_dw_reportingview}
+            dataColNames={['Gender', 'Count', 'Percent']}
+            dataFullColumn={VWDWReportingViewColumns.gender_name}
+            orderByMethod={EDataSortMethod.sortValueDesc}
+            pct
+            val
+          />
+          <ChartLine />
+        </div>
+        <div className="grow">
+          <DashboardHeadingCustom
+            title="By Inmate Age (Avg?)"
+            replacementValue=" 10"
+          />
+          <DashboardTableCard
+            noTitle
+            title=""
+            dataFull={vw_dw_reportingview}
+            dataColNames={['Age Range', 'Count', 'Percent']}
+            dataFullColumn={VWDWReportingViewColumns.age_group_name}
+            orderByMethod={EDataSortMethod.sortColumnAsc}
+            orderByColumn={VWDWReportingViewColumns.age_group_seq}
+            pct
+            val
+          />
+        </div>
+      </div>
+      <div className="flex flex-row">
+        <DashboardTableCard
+          title="By State"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['State', 'Count']}
+          dataFullColumn={VWDWReportingViewColumns.location_state}
+          orderByMethod={EDataSortMethod.sortValueDesc}
+          returnLimit={11}
+        />
+        <DashboardTableCard
+          title="By Residency"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Residency', 'Count']}
+          dataFullColumn={VWDWReportingViewColumns.location_city}
+          orderByMethod={EDataSortMethod.sortValueDesc}
+          returnLimit={11}
+        />
+      </div>
+      <div className="flex flex-row">
+        <DashboardTableCard
+          title="By Day of Week"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Day', 'Count', 'Percent']}
+          dataFullColumn={VWDWReportingViewColumns.arrest_day_of_week_name}
+          orderByColumn={VWDWReportingViewColumns.arrest_day_of_week}
+          orderByMethod={EDataSortMethod.sortColumnAsc}
+          pct
+          val
+        />
+        <DashboardTableCard
+          title="By Hour (AM)"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Hour', 'Count', 'Percent']}
+          dataFullColumn={VWDWReportingViewColumns.arrest_date_hour}
+          orderByColumn={VWDWReportingViewColumns.arrest_date_hour_index}
+          orderByMethod={EDataSortMethod.sortColumnAsc}
+          filterByColumn={VWDWReportingViewColumns.arrest_date_hour_index}
+          filterByRange={{ min: 0, max: 11 }}
+          val
+          pct
+        />
+
+        <DashboardTableCard
+          title="By Hour (PM)"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Hour', 'Count', 'Percent']}
+          dataFullColumn={VWDWReportingViewColumns.arrest_date_hour}
+          orderByColumn={VWDWReportingViewColumns.arrest_date_hour_index}
+          orderByMethod={EDataSortMethod.sortColumnAsc}
+          filterByColumn={VWDWReportingViewColumns.arrest_date_hour_index}
+          filterByRange={{ min: 12, max: 23 }}
+          val
+          pct
+        />
+      </div>
+      <div className="flex flex-row">
+        <DashboardTableCard
+          title="By Court"
+          dataColNames={['Court', 'Count']}
+          dataFullColumn={VWDWReportingViewOffensesColumns.court_name}
+          dataFull={vw_dw_reportingview_offenses}
+          orderByMethod={EDataSortMethod.sortValueDesc}
+        />
+        <DashboardTableCard
+          title="By Offense"
+          dataColNames={['Offense', 'Count']}
+          dataFull={vw_dw_reportingview_offenses}
+          dataFullColumn={
+            VWDWReportingViewOffensesColumns.offense_category_name
+          }
+          orderByMethod={EDataSortMethod.sortValueDesc}
+          returnLimit={20}
+        />
+        <DashboardTableCard
+          title="Inmate Duration"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Days', 'Count']}
+          dataFullColumn={VWDWReportingViewColumns.days_in}
+          orderByMethod={EDataSortMethod.sortValueDesc}
+          returnLimit={20}
+        />
+      </div>
+      <div className="flex-row">
+        <DashboardTableCard
+          title="Most Recent 25 Arrests"
+          dataFull={vw_dw_reportingview}
+          dataColNames={['Arrest Date', 'Name']}
+          dataFullColumn={VWDWReportingViewColumns.name_full}
+          orderByMethod={EDataSortMethod.sortColumnDesc}
+          orderByColumn={VWDWReportingViewColumns.arrest_datetime}
+          returnLimit={25}
+        />
+      </div>
+    </div>
   );
 }
